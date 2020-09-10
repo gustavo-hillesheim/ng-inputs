@@ -1,0 +1,13 @@
+<nz-form-item>
+  <nz-form-label [nzSpan]="24" [nzNoColon]="true" [nzRequired]="isRequired">
+    {{ label | translate }}
+    <ni-info-icon [info]="info"></ni-info-icon>
+  </nz-form-label>
+  <nz-form-control
+    [nzSpan]="24"
+    [nzValidateStatus]="status || control"
+    [nzErrorTip]="errorMessage | translate"
+  >
+    <ng-content></ng-content>
+  </nz-form-control>
+</nz-form-item>

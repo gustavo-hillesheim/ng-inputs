@@ -1,0 +1,35 @@
+<ni-input-control [autoConfigure]="this">
+  <nz-input-group
+    *ngIf="prefixOptions"
+    [nzAddOnBefore]="prefixOptions ? prefixTemplate : null"
+  >
+    <ng-container [ngTemplateOutlet]="input"></ng-container>
+  </nz-input-group>
+  <ng-container
+    *ngIf="!prefixOptions"
+    [ngTemplateOutlet]="input"
+  ></ng-container>
+</ni-input-control>
+
+<ng-template #input>
+  <input
+    nz-input
+    [placeholder]="getPlaceholder() | async | translate"
+    [(ngModel)]="value"
+  />
+</ng-template>
+
+<ng-template #prefixTemplate>
+  <nz-select
+    class="prefix-selector"
+    [compareWith]="compareOptions"
+    [(ngModel)]="prefix"
+  >
+    <nz-option
+      *ngFor="let option of prefixOptions"
+      [nzLabel]="option.label | translate"
+      [nzValue]="option.value"
+    >
+    </nz-option>
+  </nz-select>
+</ng-template>

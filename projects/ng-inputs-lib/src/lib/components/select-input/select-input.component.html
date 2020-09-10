@@ -1,0 +1,17 @@
+<ni-input-control [autoConfigure]="this">
+  <nz-select
+    [nzAllowClear]="allowClear"
+    [compareWith]="compareWith"
+    [nzPlaceHolder]="getPlaceholder() | async | translate"
+    [nzMode]="mode"
+    [ngModel]="value"
+    (ngModelChange)="setValue($event)"
+  >
+    <nz-option
+      *ngFor="let option of options; trackBy: trackSelectOptions"
+      [nzValue]="option.value"
+      [nzLabel]="option.label | translate"
+    >
+    </nz-option>
+  </nz-select>
+</ni-input-control>

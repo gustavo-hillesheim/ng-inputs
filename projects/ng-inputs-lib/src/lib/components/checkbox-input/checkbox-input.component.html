@@ -1,0 +1,10 @@
+<ni-input-control
+  [control]="control"
+  [status]="getStatus()"
+  [errorMessage]="getErrorMessage()"
+>
+  <label nz-checkbox [(ngModel)]="value">
+    {{ getLabel() | translate }}
+  </label>
+  <ni-info-icon [info]="getInfo()"></ni-info-icon>
+</ni-input-control>

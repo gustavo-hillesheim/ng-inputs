@@ -1,0 +1,9 @@
+<i
+    class="info-icon"
+    nz-icon
+    nz-tooltip
+    *ngIf="translateUtils.hasTranslation(info) | async"
+    [nzTooltipTitle]="info | translate"
+    [nzTooltipPlacement]="'right'"
+    [nzType]="'info-circle'">
+  </i>

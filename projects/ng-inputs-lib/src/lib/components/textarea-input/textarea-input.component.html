@@ -1,0 +1,9 @@
+<ni-input-control [autoConfigure]="this">
+  <textarea
+    nz-input
+    [placeholder]="getPlaceholder() | async | translate"
+    nzAutosize
+    [(ngModel)]="value"
+  >
+  </textarea>
+</ni-input-control>

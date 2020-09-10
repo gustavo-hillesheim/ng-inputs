@@ -2,5 +2,163 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ng-inputs-lib": {
+      "projectType": "library",
+      "root": "projects/ng-inputs-lib",
+      "sourceRoot": "projects/ng-inputs-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-inputs-lib/tsconfig.lib.json",
+            "project": "projects/ng-inputs-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-inputs-lib/src/test.ts",
+            "tsConfig": "projects/ng-inputs-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-inputs-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-inputs-lib/tsconfig.lib.json",
+              "projects/ng-inputs-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ng-inputs-example": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ng-inputs-example",
+      "sourceRoot": "projects/ng-inputs-example/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ng-inputs-example",
+            "index": "projects/ng-inputs-example/src/index.html",
+            "main": "projects/ng-inputs-example/src/main.ts",
+            "polyfills": "projects/ng-inputs-example/src/polyfills.ts",
+            "tsConfig": "projects/ng-inputs-example/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/ng-inputs-example/src/favicon.ico",
+              "projects/ng-inputs-example/src/assets"
+            ],
+            "styles": [
+              "projects/ng-inputs-example/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ng-inputs-example/src/environments/environment.ts",
+                  "with": "projects/ng-inputs-example/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng-inputs-example:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-inputs-example:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ng-inputs-example:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-inputs-example/src/test.ts",
+            "polyfills": "projects/ng-inputs-example/src/polyfills.ts",
+            "tsConfig": "projects/ng-inputs-example/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-inputs-example/karma.conf.js",
+            "assets": [
+              "projects/ng-inputs-example/src/favicon.ico",
+              "projects/ng-inputs-example/src/assets"
+            ],
+            "styles": [
+              "projects/ng-inputs-example/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-inputs-example/tsconfig.app.json",
+              "projects/ng-inputs-example/tsconfig.spec.json",
+              "projects/ng-inputs-example/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ng-inputs-example/e2e/protractor.conf.js",
+            "devServerTarget": "ng-inputs-example:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ng-inputs-example:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ng-inputs-lib"
 }

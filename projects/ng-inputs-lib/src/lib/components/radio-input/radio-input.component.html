@@ -1,0 +1,7 @@
+<ni-input-control [autoConfigure]="this">
+  <nz-radio-group [class]="orientation" [(ngModel)]="value">
+    <label nz-radio *ngFor="let option of options" [nzValue]="option.value">
+      {{ option.label | translate }}
+    </label>
+  </nz-radio-group>
+</ni-input-control>

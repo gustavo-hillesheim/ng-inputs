@@ -1,0 +1,12 @@
+<ni-input-control [autoConfigure]="this">
+  <nz-input-number
+    [style.width]="'100%'"
+    [nzPlaceHolder]="getPlaceholder() | async | translate"
+    [nzMin]="min"
+    [nzMax]="max"
+    [nzStep]="step"
+    [nzPrecision]="precision"
+    [(ngModel)]="value"
+  >
+  </nz-input-number>
+</ni-input-control>
